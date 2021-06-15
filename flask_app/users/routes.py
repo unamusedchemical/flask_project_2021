@@ -197,12 +197,24 @@ def unfollow(user_username):
 @login_required
 def delete_user(user_id):
     user = User.query.get_or_404(user_id)
+    
+    if user.profile_image != 'default.jpg':
+        picture_path = os.path.join(current_app.root_path, 'static/profile_pics', user.profile_image)
+        os.remove(picture_path)
+    
+    for i in user.liked:
+        db.session.delete(i)
+    for i in user.comments:
+        db.session.delete(i)
     for i in user.posts:
         if i.post_image:
             image_path = os.path.join(current_app.root_path, 'static/post_pics', i.post_image)
+            for j in i.comments:
+                db.session.delete(j)
             os.remove(image_path)
-        i.query.delete()
-    user.query.delete()
+        db.session.delete(i)
+    
+    db.session.delete(user)
     db.session.commit()
     logout()
     
