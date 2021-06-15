@@ -35,4 +35,5 @@ SQLAlchemy==1.3.24
 SQLAlchemy-Utils==0.37.4
 Werkzeug==2.0.1
 Whoosh==2.7.4
-WTForms==2.3.3`
+WTForms==2.3.3
+```
