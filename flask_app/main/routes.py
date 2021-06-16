@@ -14,7 +14,7 @@ def home():
     if form.validate_on_submit():        
         return redirect(url_for('main.search', searched=form.search.data, type=1))
     
-    return render_template('content.html', heading='Posts', title="Home", type='post', data=posts, form=form)
+    return render_template('content.html', heading='Home', title="Home", type='post', data=posts, form=form)
 
 @main.route('/search/<searched>/<int:type>')
 @login_required

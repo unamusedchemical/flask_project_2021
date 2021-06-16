@@ -4,7 +4,7 @@ from flask_app import db
 from flask_app.models import User, Posts, Comments
 from flask_app.posts.utils import save_post_pic
 import os
-from flask_app.posts.forms import PostForm, CommentsForm, ActionForm
+from flask_app.posts.forms import PostForm, CommentsForm, ActionForm, SearchForm
 
 
 posts = Blueprint('posts', __name__)
@@ -135,3 +135,14 @@ def unlike(post_id):
         return redirect(url_for('posts.post', post_id=post_id))
     else:
         return redirect(url_for('main.home'))
+
+@posts.route("/posts", methods=['POST', 'GET'])
+@login_required
+def random_posts():
+    page = request.args.get('page', 1, type=int)
+    random_posts = Posts.query.paginate(page=page, per_page=8)
+    form = SearchForm()
+    if form.validate_on_submit():        
+        return redirect(url_for('main.search', searched=form.search.data, type=1))
+    
+    return render_template('content.html', heading='Posts', type='post', data=random_posts, form=form)

@@ -6,8 +6,13 @@
             <div class="col">
                 {% if type == 'post' %}
                     {% if not data.total %}
+
                         <div class="card border-secondary card-body text-secondary" style="max-width: 35rem;">
-                            <p class="card-text h4">You have to be following other users in order to get content on your main page!</p>
+                            {% if title == 'Home' %}
+                                <p class="card-text h4">You have to be following other users in order to get content on your main page!</p>
+                            {% else %}
+                                <p class="card-text h4">Wow, so empty. Be the first one to post!</p>
+                            {% endif %}
                         </div>
                     {% else %}
                         <h2>{{ heading }}</h2>

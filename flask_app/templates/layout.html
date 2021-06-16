@@ -33,6 +33,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('users.people') }}">People</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('posts.random_posts') }}">Posts</a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav d-flex">
                         {% if current_user.is_authenticated %}
