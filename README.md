@@ -1,7 +1,7 @@
 # Twistagram
 * PYTHON project for the end of the school year
   * A web app made with the Python Flask microframework and BOOTSTRAP5 for the HTML and CSS
-  * Available at: https://algugone.pythonanywhere.com/
+  * CURRENTLY DOWN
 * USED TECHNOLOGIES:
 ```alembic==1.6.5
 bcrypt==3.2.0
